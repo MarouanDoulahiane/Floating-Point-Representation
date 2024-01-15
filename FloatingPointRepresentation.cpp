@@ -53,7 +53,7 @@ ssize_t getFloatingPointPos(string nb)
 
 bool    containZeros(string nb)
 {
-	for (int i = 0; i < nb.size(); i++)
+	for (size_t i = 0; i < nb.size(); i++)
 		if (nb[i] != '0')
 			return false;
 
@@ -74,6 +74,8 @@ void    handleInt(string nb)
 	}
 
 	int temp = res;
+	if (!temp)
+		bits += '0';
 	while (temp)
 	{
 		bits += temp % 2? '1': '0';
