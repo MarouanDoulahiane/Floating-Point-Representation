@@ -53,7 +53,10 @@ ssize_t getFloatingPointPos(string nb)
 
 bool    containZeros(string nb)
 {
-	for (size_t i = 0; i < nb.size(); i++)
+	size_t i = 0;
+	if (nb[i] == '+' || nb[i] == '-')
+		i++;
+	for (; i < nb.size(); i++)
 		if (nb[i] != '0')
 			return false;
 
@@ -150,7 +153,7 @@ void	handleFloat(string integerPart, string floatPart)
 	for (int i = 0; i < 8 - exponentBits.size(); i++)
 		results += "0";
 	results += exponentBits;
-	int mantissaPos = 1;
+	int mantissaPos = containZeros(integerPart)? 0: 1;
 	if (integerPart[0] == '+' || integerPart[0] == '-')
 		mantissaPos++;
 	cerr << "Test :" << intBits.substr(mantissaPos) << endl;
